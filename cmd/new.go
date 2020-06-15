@@ -39,7 +39,7 @@ func createNewApp(cmd *cobra.Command, args []string) {
 
 func createDbConfig(appConfig AppConfig) {
 	basepath, _ := os.Executable()
-	bpath := path.Join(basepath, "..", "src/github.com/lean-ms/lean-ms")
+	bpath := path.Join(basepath, "..", "..", "src/github.com/lean-ms/lean-ms")
 	dbConfigTemplPath := path.Join(bpath, "templates", "database.yml")
 	fmt.Println(12111)
 	fmt.Println(dbConfigTemplPath)
