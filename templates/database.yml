@@ -1,0 +1,20 @@
+development:
+  database: {{ .UnderscoreAppName }}_development
+  hostname: 
+  port: 5432
+  user: postgres
+  password: 
+
+test:
+  database: {{ .UnderscoreAppName }}_test
+  hostname: 
+  port: 5432
+  user: postgres
+  password:    
+
+production:
+  database: {{ .UnderscoreAppName }}_production
+  hostname: ${DATABASE_HOST}
+  port: ${DATABASE_PORT}
+  user: ${DATABASE_USER}
+  password: ${DATABASE_PASSWORD}
