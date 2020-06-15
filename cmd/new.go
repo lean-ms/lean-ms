@@ -33,12 +33,13 @@ type AppConfig struct {
 func createNewApp(cmd *cobra.Command, args []string) {
 	appName := args[0]
 	appConfig := AppConfig{appName, utils.Underscore(appName)}
+	fmt.Println(os.Executable())
 	fmt.Printf("Creating new app named %s", appName)
 	createDbConfig(appConfig)
 }
 
 func createDbConfig(appConfig AppConfig) {
-	dbConfigTempl := template.Must(template.ParseFiles("templates/database.yml"))
+	dbConfigTempl := template.Must(template.ParseFiles("./templates/database.yml"))
 	configPath := path.Join(appConfig.Name, "config")
 	err := os.MkdirAll(configPath, os.ModePerm)
 	if err != nil {
