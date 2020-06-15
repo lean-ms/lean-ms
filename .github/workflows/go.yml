@@ -38,14 +38,14 @@ jobs:
     - name: Build
       run: go build -v .
 
-    # - name: Test Coverage
-    #   uses: paambaati/codeclimate-action@v2.6.0
-    #   env:
-    #     CC_TEST_REPORTER_ID: asdasd
-    #   with:
-    #     coverageCommand: go test -coverprofile c.out -v ./...
-    #     coverageLocations: ${{github.workspace}}/c.out:gocov
-    #     prefix: github.com/lean-ms/lean-ms
+    - name: Test Coverage
+      uses: paambaati/codeclimate-action@v2.6.0
+      env:
+        CC_TEST_REPORTER_ID: 15cc22c36e85f2b9e72764d09e4793a7a05d998cd77ce0789dfa653a62af446c
+      with:
+        coverageCommand: go test -coverprofile c.out -v ./...
+        coverageLocations: ${{github.workspace}}/c.out:gocov
+        prefix: github.com/lean-ms/lean-ms
   
   tag:
     name: Create Tag
