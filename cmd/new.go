@@ -1,5 +1,5 @@
 /*
-Copyright © 2020 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 PAULO SOARES <phsoares.ita@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/lean-ms/lean-ms/utils"
+	"github.com/lean-ms/lean-ms/cmd/helpers"
+	"github.com/lean-ms/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -38,11 +39,7 @@ func createNewApp(cmd *cobra.Command, args []string) {
 }
 
 func createDbConfig(appConfig AppConfig) {
-	basepath, _ := os.Executable()
-	bpath := path.Join(basepath, "..", "..", "src/github.com/lean-ms/lean-ms")
-	dbConfigTemplPath := path.Join(bpath, "templates", "database.yml")
-	fmt.Println(12111)
-	fmt.Println(dbConfigTemplPath)
+	dbConfigTemplPath := path.Join(helpers.GetBasePath(), "templates", "database.yml")
 	dbConfigTempl := template.Must(template.ParseFiles(dbConfigTemplPath))
 	configPath := path.Join(appConfig.Name, "config")
 	err := os.MkdirAll(configPath, os.ModePerm)
