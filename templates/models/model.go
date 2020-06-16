@@ -1,3 +1,3 @@
-type {{camelizedModelName}} struct {
-	{{range properties}}a{{else}}b{{end}}
+type {{ .CamelizedModelName }} struct {
+	{{ range .Properties }} a {{ else }} b {{ end }}
 }

@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"os"
@@ -50,7 +51,7 @@ type ModelTemplate struct {
 
 func createResource(resourceName string, params ...string) {
 	templatePath := path.Join(helpers.GetBasePath(), "templates")
-	modelsTemplateFile := path.Join(templatePath, "models")
+	modelsTemplateFile := path.Join(templatePath, "models", "model.go")
 	modelsTemplate := template.Must(template.ParseFiles(modelsTemplateFile))
 	err := os.MkdirAll("models", os.ModePerm)
 	if err != nil {
@@ -58,7 +59,9 @@ func createResource(resourceName string, params ...string) {
 	}
 
 	modelTemplate := &ModelTemplate{utils.Camelize(resourceName), make([]string, 0)}
-	modelFile, err := os.Create(path.Join("models", modelTemplate.camelizedModelName+".go"))
+
+	modelFilepath := fmt.Sprintf("%s.go", utils.Underscore(resourceName))
+	modelFile, err := os.Create(path.Join("models", modelFilepath))
 	if err != nil {
 		panic(err)
 	}
